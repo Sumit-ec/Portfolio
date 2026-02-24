@@ -1,0 +1,50 @@
+:root {
+  /* Common Colors */
+  --color-primary-blue-dark: #004770;
+  --color-primary-blue-light: #1177bd;
+  --color-blue-side: #fafbfc;
+  --color-greenofficial-light: rgba(32, 158, 73, 0.1);
+  --color-greenofficial: #209e49;
+  --color-pink: #d63384;
+  --color-red: #dc3545;
+  --color-red-light: #dc35451a;
+  --color-orange: #fd7e14;
+  --color-yellow: #ffc107;
+  --color-yellow-light: #ffc1071a;
+  --color-green: #198754;
+  --color-green-light: #1987541a;
+  --color-teal: #68fb9a;
+  --color-cyan: #0dcaf0;
+  --color-rating: #faa706;
+  --color-white: #fff;
+  --color-gray: #182029;
+  --color-black: #1a1a1a;
+  --color-black-2: #2a2a2a;
+  --color-black-3: #3a3a3a;
+  --color-black-4: #4a4a4a;
+  --color-black-5: #5a5a5a;
+  --color-black-6: #6a6a6a;
+  --color-black-7: #7a7a7a;
+  --color-black-8: #8a8a8a;
+  --color-black-9: #9a9a9a;
+  --color-light-grey: #f3f3f3;
+
+  /* Body & Heading */
+  --color-body: #1a1a1a;
+  --color-heading: #1a1a1a;
+
+  /* Theme */
+  --color-theme-primary: #1177bd;
+  --color-theme-secondary: #209e49;
+
+  /* Font */
+  --color-font-primary: #1a1a1a;
+  --color-font-secondary: #1177bd;
+
+  /* Border */
+  --color-border-1: #19222b;
+  --color-border-2: #22292f;
+  --color-border-3: #7ec1bd;
+  --color-border-4: #1178bd96;
+  --color-border-5: #1b242e;
+}
