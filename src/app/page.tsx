@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { Project } from "@/components/Projects/Project";
+import { Experience } from "@/components/Experience/Experience";
 import ContactForm from "@/components/Contact/ContactForm";
 import OpenToWorkBadge from "@/components/OpenToWorkBadge";
 import { ToastContainer } from "react-toastify";
@@ -41,6 +42,7 @@ const Page = () => {
         <Header />
         <Background id="home" />
         <About />
+        <Experience />
         <Project />
         <Services id="services" />
         <WhyChooseUs id="whyme" />
