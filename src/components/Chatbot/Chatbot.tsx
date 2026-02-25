@@ -119,7 +119,7 @@ export default function Chatbot() {
       setError(errorMsg);
       const errorMessage: Message = {
         role: "assistant",
-        content: "I'm sorry, I encountered an error. Please make sure the OpenAI API key is configured.",
+        content: "I'm sorry, I encountered an error. Please make sure the API key is configured correctly in the environment variables.",
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -268,8 +268,8 @@ export default function Chatbot() {
                 >
                   <div
                     className={`max-w-[80%] rounded-2xl px-4 py-2 break-words overflow-hidden ${message.role === "user"
-                        ? "bg-gradient-to-r from-blue-500/50 to-purple-500/50 border border-blue-400/60 text-white shadow-lg shadow-blue-500/20"
-                        : "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
+                      ? "bg-gradient-to-r from-blue-500/50 to-purple-500/50 border border-blue-400/60 text-white shadow-lg shadow-blue-500/20"
+                      : "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
                       }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-wrap break-words" style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>{message.content}</p>

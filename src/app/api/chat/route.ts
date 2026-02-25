@@ -1,87 +1,204 @@
-import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
-import { knowledgeBase } from '@/lib/knowledge-base';
+// import { NextRequest, NextResponse } from 'next/server';
+// import { GoogleGenerativeAI } from '@google/generative-ai';
+// import { knowledgeBase } from '@/lib/knowledge-base';
 
-// Ensure runtime is set correctly
-export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
+// // Ensure runtime is set correctly
+// export const runtime = 'nodejs';
+// export const dynamic = 'force-dynamic';
+
+// export async function POST(req: NextRequest) {
+//   try {
+//     // Check for Gemini API key
+//     const apiKey = process.env.GEMINI_API_KEY;
+//     if (!apiKey) {
+//       return NextResponse.json(
+//         { error: 'Gemini API key is not configured. Please add GEMINI_API_KEY to your .env file.' },
+//         { status: 500 }
+//       );
+//     }
+
+//     let messages;
+//     try {
+//       const body = await req.json();
+//       messages = body.messages;
+//     } catch (parseError) {
+//       return NextResponse.json(
+//         { error: 'Invalid JSON in request body' },
+//         { status: 400 }
+//       );
+//     }
+
+//     // Initialize Google Generative AI
+//     const genAI = new GoogleGenerativeAI(apiKey);
+
+//     // Validate messages array
+//     if (!Array.isArray(messages) || messages.length === 0) {
+//       return NextResponse.json(
+//         { error: 'Messages array is required' },
+//         { status: 400 }
+//       );
+//     }
+
+//     // System instruction with knowledge base
+//     const systemInstruction = `You are SumitBOT, a helpful assistant chatbot for Sumit Kumar's portfolio website. Your name is SumitBOT. Your purpose is to answer questions about Sumit Kumar, his work, projects, skills, and experience.
+
+// IMPORTANT INSTRUCTIONS:
+// 1. Your name is SumitBOT - introduce yourself as SumitBOT when appropriate
+// 2. ONLY answer questions about Sumit Kumar, his work, projects, skills, experience, and services
+// 3. If asked about something unrelated to Sumit Kumar, politely redirect to topics about him
+// 4. Use the knowledge base below to provide accurate and detailed information
+// 5. Be conversational, friendly, and professional
+// 6. If you don't know something specific, say so rather than making it up
+// 7. Always maintain context from the conversation history
+
+// KNOWLEDGE BASE:
+// ${knowledgeBase}
+
+// Remember: You are SumitBOT, representing Sumit Kumar professionally. Be helpful, accurate, and engaging.`;
+
+//     // Initialize the model with system instruction
+//     const model = genAI.getGenerativeModel({
+//       model: "gemini-1.5-flash",
+//       systemInstruction: systemInstruction,
+//     });
+
+//     // Prepare history (Gemini format)
+//     const history = messages.slice(0, -1).map((msg: any) => ({
+//       role: msg.role === 'user' ? 'user' : 'model',
+//       parts: [{ text: msg.content }],
+//     }));
+
+//     const lastMessage = messages[messages.length - 1].content;
+
+//     // Start a chat session
+//     const chat = model.startChat({
+//       history: history,
+//       generationConfig: {
+//         maxOutputTokens: 500,
+//         temperature: 0.7,
+//       },
+//     });
+
+//     const result = await chat.sendMessage(lastMessage);
+//     const response = await result.response;
+//     const assistantMessage = response.text();
+
+//     if (!assistantMessage) {
+//       return NextResponse.json(
+//         { error: 'No response from Gemini API' },
+//         { status: 500 }
+//       );
+//     }
+
+//     return NextResponse.json({
+//       message: assistantMessage,
+//     });
+//   } catch (error: any) {
+//     console.error('Chat API error:', error);
+
+//     return NextResponse.json(
+//       { error: 'An error occurred while processing your request', details: error.message },
+//       { status: 500 }
+//     );
+//   }
+// }
+
+
+
+
+
+import { NextRequest, NextResponse } from "next/server";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { knowledgeBase } from "@/lib/knowledge-base";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   try {
-    // Check for API key first before initializing OpenAI client
-    if (!process.env.OPENAI_API_KEY) {
+    // 🔐 Get API key from environment
+    const apiKey = process.env.GEMINI_API_KEY;
+
+    if (!apiKey) {
       return NextResponse.json(
-        { error: 'OpenAI API key is not configured. Please add OpenAI API key to your file.' },
+        { error: "GEMINI_API_KEY is not configured in .env file." },
         { status: 500 }
       );
     }
 
-    let messages;
-    try {
-      const body = await req.json();
-      messages = body.messages;
-    } catch (parseError) {
-      return NextResponse.json(
-        { error: 'Invalid JSON in request body' },
-        { status: 400 }
-      );
-    }
+    // 📥 Parse request body
+    const body = await req.json();
+    const messages = body?.messages;
 
-    // Initialize OpenAI client only after confirming API key exists
-    const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
-
-    // Validate messages array
     if (!Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json(
-        { error: 'Messages array is required' },
+        { error: "Messages array is required." },
         { status: 400 }
       );
     }
 
-    // Create system message with knowledge base
-    const systemMessage = {
-      role: 'system' as const,
-      content: `You are SumitBOT, a helpful assistant chatbot for Sumit Kumar's portfolio website. Your name is SumitBOT. Your purpose is to answer questions about Sumit Kumar, his work, projects, skills, and experience.
-      
-IMPORTANT INSTRUCTIONS:
-1. Your name is SumitBOT - introduce yourself as SumitBOT when appropriate
-2. ONLY answer questions about Sumit Kumar, his work, projects, skills, experience, and services
-3. If asked about something unrelated to Sumit Kumar, politely redirect to topics about him
-4. Use the knowledge base below to provide accurate and detailed information
-5. Be conversational, friendly, and professional
-6. If you don't know something specific, say so rather than making it up
-7. Always maintain context from the conversation history
+    // 🧠 Get last user message only (stateless mode)
+    const lastMessage = messages[messages.length - 1]?.content;
+
+    if (!lastMessage) {
+      return NextResponse.json(
+        { error: "Invalid message format." },
+        { status: 400 }
+      );
+    }
+
+    // 🤖 Initialize Gemini
+    const genAI = new GoogleGenerativeAI(apiKey);
+
+    const systemInstruction = `
+You are SumitBOT, a professional assistant for Sumit Kumar's portfolio website.
+
+Your purpose:
+- Answer ONLY questions about Sumit Kumar
+- His projects
+- His skills
+- His experience
+- His services
+- His professional background
+
+Rules:
+1. ONLY introduce yourself as SumitBOT in the very first message. DO NOT repeat your introduction (e.g., "Hello there! I'm SumitBOT") in subsequent responses once the conversation has started.
+2. CRITICAL: DO NOT use any markdown formatting symbols like double stars (**), single stars (*), underscores (_), or backticks (\`). Return clean, professional PLAIN TEXT only. Use plain dashes (-) for lists if needed, but avoid all other symbols.
+3. Be friendly, professional, and conversational.
+4. If asked unrelated questions, politely redirect to Sumit Kumar topics.
+5. Use the knowledge base below for accurate answers.
 
 KNOWLEDGE BASE:
 ${knowledgeBase}
 
-Remember: You are SumitBOT, representing Sumit Kumar professionally. Be helpful, accurate, and engaging.`,
-    };
+Remember: You represent Sumit Kumar professionally.
+`;
 
-    // Prepare messages for OpenAI (system message + conversation history)
-    const openaiMessages = [
-      systemMessage,
-      ...messages.map((msg: { role: string; content: string }) => ({
-        role: msg.role as 'user' | 'assistant',
-        content: msg.content,
-      })),
-    ];
-
-    // Call OpenAI API
-    const completion = await openai.chat.completions.create({
-      model: process.env.OPENAI_MODEL || 'gpt-4o',
-      messages: openaiMessages,
-      temperature: 0.7,
-      max_tokens: 500,
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+      systemInstruction,
     });
 
-    const assistantMessage = completion.choices[0]?.message?.content;
+    // 🚀 Generate response (no history = no role error)
+    const result = await model.generateContent({
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: lastMessage }],
+        },
+      ],
+      generationConfig: {
+        maxOutputTokens: 500,
+        temperature: 0.7,
+      },
+    });
+
+    const response = await result.response;
+    const assistantMessage = response.text();
 
     if (!assistantMessage) {
       return NextResponse.json(
-        { error: 'No response from OpenAI' },
+        { error: "No response from Gemini API." },
         { status: 500 }
       );
     }
@@ -90,23 +207,14 @@ Remember: You are SumitBOT, representing Sumit Kumar professionally. Be helpful,
       message: assistantMessage,
     });
   } catch (error: any) {
-    console.error('Chat API error:', error);
-
-    // Handle specific OpenAI errors
-    if (error instanceof OpenAI.APIError) {
-      return NextResponse.json(
-        {
-          error: error.message || 'OpenAI API error',
-          code: error.code,
-        },
-        { status: error.status || 500 }
-      );
-    }
+    console.error("Chat API error:", error);
 
     return NextResponse.json(
-      { error: 'An error occurred while processing your request' },
+      {
+        error: "An error occurred while processing the request.",
+        details: error.message,
+      },
       { status: 500 }
     );
   }
 }
-

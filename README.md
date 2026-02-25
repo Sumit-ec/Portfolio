@@ -18,7 +18,7 @@ A modern, interactive portfolio website showcasing projects, skills, and profess
 - **Why Choose Us** - Highlighting key differentiators
 - **FAQ Section** - Frequently asked questions
 - **Contact Form** - Get in touch functionality
-- **AI Chatbot (SumitBOT)** - Interactive chatbot powered by OpenAI that answers questions about Sumit's work, projects, and experience
+- **AI Chatbot (SumitBOT)** - Interactive chatbot powered by Google Gemini that answers questions about Sumit's work, projects, and experience
 - **Responsive Design** - Optimized for all devices
 - **Smooth Animations** - Powered by Framer Motion
 - **SEO Optimized** - Built-in Next.js SEO features
@@ -38,7 +38,7 @@ A modern, interactive portfolio website showcasing projects, skills, and profess
 - **React Icons** - Additional icons
 
 ### Features
-- **OpenAI API** - Chatbot integration
+- **Google Generative AI** - Chatbot integration (Gemini)
 - **React Toastify** - Toast notifications
 - **Lottie React** - Animated graphics
 - **Lenis** - Smooth scrolling
@@ -52,7 +52,7 @@ A modern, interactive portfolio website showcasing projects, skills, and profess
 
 - Node.js 18+ 
 - npm or yarn
-- OpenAI API key (for chatbot functionality)
+- Google Gemini API key (for chatbot functionality)
 
 ### Installation
 
@@ -69,8 +69,7 @@ npm install
 
 3. Create a `.env.local` file in the root directory:
 ```env
-OPENAI_API_KEY=your_openai_api_key_here
-OPENAI_MODEL=gpt-4o  # Optional, defaults to gpt-4o
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 4. Run the development server:
@@ -86,12 +85,11 @@ The portfolio includes **SumitBOT**, an AI-powered chatbot that answers question
 
 ### Setup Instructions
 
-1. Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+1. Get your Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
 2. Add it to your `.env.local` file:
 ```env
-OPENAI_API_KEY=your_openai_api_key_here
-OPENAI_MODEL=gpt-4o  # Optional: specify model (default: gpt-4o)
+GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
 3. The chatbot will appear as a floating widget in the bottom-right corner of the portfolio.
@@ -100,7 +98,7 @@ OPENAI_MODEL=gpt-4o  # Optional: specify model (default: gpt-4o)
 
 - SumitBOT uses a comprehensive knowledge base about Sumit's professional background
 - It can answer questions about projects, skills, services, and experience
-- Powered by OpenAI's GPT-4o model
+- Powered by Google Gemini 1.5 Flash model
 - Knowledge base is stored in `src/lib/knowledge-base.ts`
 
 ## 📁 Project Structure
@@ -158,8 +156,7 @@ The easiest way to deploy this Next.js app is using the [Vercel Platform](https:
 1. Push your code to GitHub
 2. Import your repository on Vercel
 3. Add environment variables:
-   - `OPENAI_API_KEY` - Your OpenAI API key
-   - `OPENAI_MODEL` - (Optional) Model to use
+   - `GEMINI_API_KEY` - Your Gemini API key
 4. Deploy!
 
 The site will be live at `https://your-project.vercel.app`
