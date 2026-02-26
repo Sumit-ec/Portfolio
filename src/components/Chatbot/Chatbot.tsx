@@ -14,7 +14,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi! I'm SumitBOT, here to answer questions about Sumit Kumar, his work, projects, and experience. What would you like to know?",
+      content: "Hi! I'm Genesis, here to answer questions about Sumit Kumar, his work, projects, and experience. What would you like to know?",
     },
   ]);
   const [inputValue, setInputValue] = useState("");
@@ -169,7 +169,7 @@ export default function Chatbot() {
             ease: "easeInOut"
           }
         } : {}}
-        aria-label="Toggle SumitBOT"
+        aria-label="Toggle Genesis"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -239,14 +239,14 @@ export default function Chatbot() {
                   <Bot className="w-5 h-5 text-white" />
                 </motion.div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm">SumitBOT</h3>
+                  <h3 className="text-white font-semibold text-sm">Genesis</h3>
                   <p className="text-gray-400 text-xs">I can answer questions about Sumit Kumar's work</p>
                 </div>
               </div>
               <button
                 onClick={handleToggle}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
-                aria-label="Close SumitBOT"
+                aria-label="Close Genesis"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -327,7 +327,7 @@ export default function Chatbot() {
                     e.preventDefault();
                   }}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask SumitBOT anything..."
+                  placeholder="Ask Genesis anything..."
                   disabled={isLoading}
                   rows={3}
                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-sm resize-none overflow-y-auto"

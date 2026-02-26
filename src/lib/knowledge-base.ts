@@ -1,5 +1,5 @@
 /**
- * Knowledge Base for Sumit Kumar's Portfolio Chatbot (SumitBOT)
+ * Knowledge Base for Sumit Kumar's Portfolio Chatbot (Genesis)
  * Contains comprehensive information about Sumit compiled from portfolio content
  */
 
@@ -10,7 +10,7 @@ export const knowledgeBase = `
 - Name: Sumit Kumar
 - Role: Full Stack Developer | Node.js & React Developer
 - Current Position: Assistant Consultant - Development at Oodles Technologies (Nov 2025 – Present)
-- Previous Position: Junior Web Developer at Excellence Technologies (May 2025 – Oct 2025)
+- Previous Position: Junior Web Developer at Excellence Technologies (Jan 2025 – Oct 2025)
 - Email: k.sumit.ec@gmail.com
 - Phone: +91 7783873885
 - LinkedIn: https://linkedin.com/in/sumit-kumar-669a8021b
@@ -46,7 +46,7 @@ I specialize in building production-grade backend services using Node.js, TypeSc
 - Implemented RabbitMQ for asynchronous microservice communication
 - Maintained documentation and deployment pipelines
 
-### Junior Web Developer | Excellence Technologies (May 2025 – Oct 2025)
+### Junior Web Developer | Excellence Technologies (Jan 2025 – Oct 2025)
 - Built responsive web applications using modern JavaScript frameworks
 - Created reusable UI components
 - Improved rendering performance and cross-browser compatibility
@@ -138,7 +138,7 @@ A: I specialize in full stack development with a strong backend focus. My core a
 A: Node.js, Express.js, React.js, Next.js, TypeScript, MongoDB, PostgreSQL, Prisma ORM, Redis, RabbitMQ, Docker, Git, REST APIs, Solidity, Redux, and Postman.
 
 **Q: Do you have real professional experience?**
-A: Yes. I'm currently working as an Assistant Consultant - Development at Oodles Technologies (Nov 2025–Present), and previously as a Junior Web Developer at Excellence Technologies (May 2025–Oct 2025). I've built production-grade APIs, microservices, and full stack applications.
+A: Yes. I'm currently working as an Assistant Consultant - Development at Oodles Technologies (Nov 2025–Present), and previously as a Junior Web Developer at Excellence Technologies (Jan 2025–Oct 2025). I've built production-grade APIs, microservices, and full stack applications.
 
 **Q: What kind of projects have you built?**
 A: A real-time Smart Bookmark Manager SaaS (built in 72 hours), a Telegram Joke Bot with automated scheduling, the Netflix Clone with TMDB integration, the AI Knowledge Hub with GPT-3.5, and microservices-based blogging platforms (Blogify).

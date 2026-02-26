@@ -18,7 +18,7 @@ A modern, interactive portfolio website showcasing projects, skills, and profess
 - **Why Choose Us** - Highlighting key differentiators
 - **FAQ Section** - Frequently asked questions
 - **Contact Form** - Get in touch functionality
-- **AI Chatbot (SumitBOT)** - Interactive chatbot powered by Google Gemini that answers questions about Sumit's work, projects, and experience
+- **AI Chatbot (Genesis)** - Interactive chatbot powered by Google Gemini that answers questions about Sumit's work, projects, and experience
 - **Responsive Design** - Optimized for all devices
 - **Smooth Animations** - Powered by Framer Motion
 - **SEO Optimized** - Built-in Next.js SEO features
@@ -79,9 +79,9 @@ npm run dev
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🤖 Chatbot Setup (SumitBOT)
+## 🤖 Chatbot Setup (Genesis)
 
-The portfolio includes **SumitBOT**, an AI-powered chatbot that answers questions about Sumit's work, projects, skills, and experience.
+The portfolio includes **Genesis**, an AI-powered chatbot that answers questions about Sumit's work, projects, skills, and experience.
 
 ### Setup Instructions
 
@@ -96,7 +96,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 ### How It Works
 
-- SumitBOT uses a comprehensive knowledge base about Sumit's professional background
+- Genesis uses a comprehensive knowledge base about Sumit's professional background
 - It can answer questions about projects, skills, services, and experience
 - Powered by Google Gemini 1.5 Flash model
 - Knowledge base is stored in `src/lib/knowledge-base.ts`
@@ -119,7 +119,7 @@ Sumit_portfolio/
 │   │   └── page.tsx     # Main page
 │   ├── components/
 │   │   ├── About/       # About section
-│   │   ├── Chatbot/     # SumitBOT component
+│   │   ├── Chatbot/     # Genesis component
 │   │   ├── Contact/     # Contact form
 │   │   ├── FAQ/         # FAQ section
 │   │   ├── Header/      # Navigation header
