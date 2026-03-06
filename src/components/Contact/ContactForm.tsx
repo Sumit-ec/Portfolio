@@ -19,8 +19,9 @@ interface FormData {
   name: string;
   email: string;
   mobile: string;
-  niche: string;
-  budget: string;
+  // niche: string;   // Replaced by companyName
+  companyName: string; // Added: Company Name field
+  // budget: string;  // Removed: Estimated Budget field
   description: string;
 }
 
@@ -31,8 +32,9 @@ export default function ContactForm({ contact }: any) {
     name: "",
     email: "",
     mobile: "",
-    niche: "",
-    budget: "",
+    // niche: "",   // Replaced by companyName
+    companyName: "", // Added: Company Name field
+    // budget: "",  // Removed: Estimated Budget field
     description: "",
   });
   const [loading, setLoading] = useState(false);
@@ -70,9 +72,11 @@ export default function ContactForm({ contact }: any) {
 
     const requiredFields: (keyof FormData)[] = [
       "name",
+      "email", // Added: email is now mandatory
       "mobile",
-      "niche",
-      "budget",
+      // "niche",   // Replaced by companyName
+      "companyName", // Added: Company Name field
+      // "budget",  // Removed: Estimated Budget field
       "description",
     ];
 
@@ -145,14 +149,15 @@ export default function ContactForm({ contact }: any) {
 
     try {
       const url =
-        "https://script.google.com/macros/s/AKfycbyfbFNYQsdAA5cg4KvFEFP7i9F7lkhH6c2CPXyhsbXK8b2nXhNp0LWuotrZ_w6ec6Jw/exec";
+        "https://script.google.com/macros/s/AKfycbxm_5IJLzgsIQi87mfzRVbSmOGws3oW_N0Jkg5LimJ7YWpbyg5kJAPnLwXHQyay7U6YYQ/exec";
 
       const body = new URLSearchParams({
         fullName: formData.name,
         email: formData.email,
-        niche: formData.niche,
+        // niche: formData.niche,    
+        companyName: formData.companyName,
         phone: formData.mobile,
-        budget: formData.budget,
+        // budget: formData.budget,  
         message: formData.description,
       }).toString();
 
@@ -170,8 +175,9 @@ export default function ContactForm({ contact }: any) {
         name: "",
         email: "",
         mobile: "",
-        niche: "",
-        budget: "",
+        // niche: "",   // Replaced by companyName
+        companyName: "", // Added: Company Name field
+        // budget: "",  // Removed: Estimated Budget field
         description: "",
       });
       setErrors({});
@@ -296,7 +302,7 @@ export default function ContactForm({ contact }: any) {
                         <input
                           name="email"
                           type="email"
-                          placeholder="Email (Optional)"
+                          placeholder="Email *"
                           value={formData.email}
                           onChange={handleInputChange}
                           className="w-full bg-gray-800/10 border border-gray-600/40 text-white placeholder:text-gray-500 focus:border-blue-400/60 focus:ring-2 focus:ring-blue-400/20 focus:outline-none px-4 py-2 rounded-xl pr-12"
@@ -310,6 +316,24 @@ export default function ContactForm({ contact }: any) {
                       </div>
                     </div>
 
+                    {/* Added: Company Name field */}
+                    <div>
+                      <input
+                        name="companyName"
+                        placeholder="Company Name *"
+                        value={formData.companyName}
+                        onChange={handleInputChange}
+                        className="w-full bg-gray-800/10 border border-gray-600/40 text-white placeholder:text-gray-500 focus:border-blue-400/60 focus:ring-2 focus:ring-blue-400/20 focus:outline-none px-4 py-2 rounded-xl"
+                        autoComplete="off"
+                      />
+                      {errors.companyName && (
+                        <p className="text-red-400 text-sm mt-1">
+                          {errors.companyName}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Removed: niche field
                     <div>
                       <input
                         name="niche"
@@ -325,24 +349,28 @@ export default function ContactForm({ contact }: any) {
                         </p>
                       )}
                     </div>
+                    */}
 
+                    {/* Mobile number  */}
+                    <div>
+                      <input
+                        name="mobile"
+                        placeholder="Mobile Number (10 digits) *"
+                        value={formData.mobile}
+                        onChange={handleInputChange}
+                        maxLength={10}
+                        className="w-full bg-gray-800/10 border border-gray-600/40 text-white placeholder:text-gray-500 focus:border-blue-400/60 focus:ring-2 focus:ring-blue-400/20 focus:outline-none px-4 py-2 rounded-xl"
+                        autoComplete="off"
+                      />
+                      {errors.mobile && (
+                        <p className="text-red-400 text-sm mt-1">
+                          {errors.mobile}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Removed: Estimated Budget field
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <input
-                          name="mobile"
-                          placeholder="Mobile Number (10 digits) *"
-                          value={formData.mobile}
-                          onChange={handleInputChange}
-                          maxLength={10}
-                          className="w-full bg-gray-800/10 border border-gray-600/40 text-white placeholder:text-gray-500 focus:border-blue-400/60 focus:ring-2 focus:ring-blue-400/20 focus:outline-none px-4 py-2 rounded-xl"
-                          autoComplete="off"
-                        />
-                        {errors.mobile && (
-                          <p className="text-red-400 text-sm mt-1">
-                            {errors.mobile}
-                          </p>
-                        )}
-                      </div>
                       <div>
                         <input
                           name="budget"
@@ -359,11 +387,13 @@ export default function ContactForm({ contact }: any) {
                         )}
                       </div>
                     </div>
+                    */}
 
                     <div>
                       <textarea
                         name="description"
-                        placeholder="Tell me about your requirements, and any integrations needed... *"
+                        // placeholder="Tell me about your requirements, and any integrations needed... *"
+                        placeholder="Message *"
                         value={formData.description}
                         onChange={handleInputChange}
                         rows={5}
@@ -381,8 +411,8 @@ export default function ContactForm({ contact }: any) {
                       containerClassName="rounded-full"
                       as="button"
                       className={`bg-[#2d2d54] text-white px-5 py-2.5 flex items-center space-x-2 transition duration-300 ${loading
-                          ? "opacity-70 cursor-not-allowed"
-                          : "hover:bg-[#3d3d74]"
+                        ? "opacity-70 cursor-not-allowed"
+                        : "hover:bg-[#3d3d74]"
                         }`}
                       onClick={handleSubmit}
                       disabled={loading}
