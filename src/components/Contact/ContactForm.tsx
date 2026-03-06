@@ -175,9 +175,9 @@ export default function ContactForm({ contact }: any) {
         name: "",
         email: "",
         mobile: "",
-        // niche: "",   // Replaced by companyName
-        companyName: "", // Added: Company Name field
-        // budget: "",  // Removed: Estimated Budget field
+        // niche: "",   
+        companyName: "",
+        // budget: "",  
         description: "",
       });
       setErrors({});
@@ -220,12 +220,12 @@ export default function ContactForm({ contact }: any) {
                 <h1 className="text-2xl md:text-4xl lg:text-5xl text-white leading-tight">
                   Let’s build{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                    scalable automation & backend systems
+                    scalable web applications
                   </span>{" "}
                   for your product
                 </h1>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  Whether you need backend APIs, workflow automation, system
+                  Whether you need frontend development, backend development, system
                   integrations, or production optimization — let’s discuss how
                   I can help you move faster and scale reliably.
                 </p>

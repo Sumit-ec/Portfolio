@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import { BsTelephone } from "react-icons/bs";
-import { Menu as MenuIcon, X } from "lucide-react";
+import { Menu as MenuIcon, X, Download } from "lucide-react";
 
 export function Header({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
@@ -107,17 +107,30 @@ export function Header({ className }: { className?: string }) {
               ))}
             </div>
 
-            {/* Desktop Connect Button */}
-            <a href="tel:+917783873885" className="hidden md:flex">
-              <HoverBorderGradient
-                containerClassName="rounded-full"
-                as="div"
-                className="bg-[#2d2d54] text-white px-6 py-3 flex items-center space-x-2 hover:bg-[#3d3d74] transition duration-300 text-sm font-medium"
+            {/* Desktop Resume + Connect Buttons */}
+            <div className="hidden md:flex items-center gap-3">
+              {/* Download Resume */}
+              <a
+                href="/resume/Sumit__Resume.pdf"
+                download="Sumit__Resume.pdf"
+                className="flex items-center space-x-2 px-4 py-2 rounded-full border border-gray-600/50 text-gray-300 hover:text-white hover:border-purple-400/60 hover:bg-purple-500/10 transition-all duration-300 text-sm font-medium"
               >
-                <BsTelephone className="w-4 h-4" />
-                <span>Connect</span>
-              </HoverBorderGradient>
-            </a>
+                <Download className="w-4 h-4" />
+                <span>Resume</span>
+              </a>
+
+              {/* Connect Button */}
+              <a href="tel:+917783873885">
+                <HoverBorderGradient
+                  containerClassName="rounded-full"
+                  as="div"
+                  className="bg-[#2d2d54] text-white px-6 py-3 flex items-center space-x-2 hover:bg-[#3d3d74] transition duration-300 text-sm font-medium"
+                >
+                  <BsTelephone className="w-4 h-4" />
+                  <span>Connect</span>
+                </HoverBorderGradient>
+              </a>
+            </div>
 
             {/* Mobile Menu Toggle */}
             <motion.div
@@ -194,6 +207,23 @@ export function Header({ className }: { className?: string }) {
               <div className="h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
               {/* Mobile Connect Button */}
 
+              {/* Mobile Download Resume Button */}
+              <a
+                href="/resume/Sumit__Resume.pdf"
+                download="Sumit__Resume.pdf"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <HoverBorderGradient
+                  containerClassName="rounded-full w-full"
+                  as="button"
+                  className="bg-gray-800/60 w-full justify-center text-white px-6 py-3 flex items-center space-x-2 hover:bg-gray-700/60 transition duration-300 text-base font-medium"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Resume</span>
+                </HoverBorderGradient>
+              </a>
+
+              {/* Mobile Connect Button */}
               <a href="tel:+917783873885">
                 <HoverBorderGradient
                   containerClassName="rounded-full w-full"

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Layout from "./Layout";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Download } from "lucide-react";
 import HeroUp from "../../../public/assets/hero-up.svg";
 import HeroDown from "../../../public/assets/hero-down.svg";
 import Image from "next/image";
@@ -88,29 +88,43 @@ export function Background(id?: any) {
                 microservices — I deliver production-ready full-stack solutions.
               </motion.p>
 
-              {/* CTA Button */}
+              {/* CTA Buttons */}
               <motion.div
                 variants={fadeUp}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center gap-3"
               >
-                <HoverBorderGradient
-                  containerClassName="rounded-full"
-                  as="button"
-                  className="bg-[#2d2d54] text-white px-5 py-2.5 flex items-center space-x-2 hover:bg-[#3d3d74] transition duration-300"
-                  onClick={() => {
-                    const section = document.getElementById("contact");
-                    if (section) {
-                      section.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <span className="font-medium">Let’s Build Scalable Systems</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </HoverBorderGradient>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  {/* Primary CTA */}
+                  <HoverBorderGradient
+                    containerClassName="rounded-full"
+                    as="button"
+                    className="bg-[#2d2d54] text-white px-5 py-2.5 flex items-center space-x-2 hover:bg-[#3d3d74] transition duration-300"
+                    onClick={() => {
+                      const section = document.getElementById("contact");
+                      if (section) {
+                        section.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    <span className="font-medium">Let's Build Scalable Systems</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </HoverBorderGradient>
+
+                  {/* Download Resume Button */}
+                  <a
+                    href="/resume/Sumit__Resume.pdf"
+                    download="Sumit__Resume.pdf"
+                    className="flex items-center space-x-2 px-5 py-2.5 rounded-full border border-gray-600/50 text-gray-300 hover:text-white hover:border-purple-400/60 hover:bg-purple-500/10 transition-all duration-300 font-medium text-sm"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Resume</span>
+                  </a>
+                </div>
+
                 {/* Footer Text */}
                 <motion.span
                   variants={fadeUp}
-                  className="text-gray-500 text-sm mt-2"
+                  className="text-gray-500 text-sm"
                 >
                   Open to full-time roles.
                 </motion.span>
