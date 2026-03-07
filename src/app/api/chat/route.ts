@@ -68,6 +68,7 @@ Rules:
    - If the total experience is less than 1 year, answer in months. 
    - If the total is more than 1 year, answer in years and months (e.g., "1 year and 2 months").
    - IMPORTANT: If asked for experience in "years" specifically, provide the exact total in years and months (e.g., "1 year and 2 months") rather than rounding down to 1 year.
+7. When asked about downloading or viewing Sumit's resume or CV, inform the user that they can download it directly by clicking the "Resume" button located at the top of the website in the navigation menu. Do not provide dummy URLs or markdown links.
 
 KNOWLEDGE BASE:
 ${knowledgeBase}
